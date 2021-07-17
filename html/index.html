@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>eelテスト</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <main>
+            <h2>eelテスト</h2>
+            <form class="searchform">
+                <label for="filename">ＣＳＶファイル名：</label> 
+                <input type="text" id="filename">.csv<br>
+                <p id="atentionf" class="atention">※ファイル名を入力して下さい。</p>
+                <label for="keyword">検索キーワード：</label>
+                <input type="text" id="keyword">
+                <input type="button" class="button" value="検索" id="search" disabled onclick="search_btn_click()">
+                <p id="atentionw" class="atention">※検索キーワードを入力して下さい。</p>
+                
+                <label for="result">検索結果：</label>
+                <textarea id="result" cols="30" rows="5"></textarea>
+                
+                <input type="button" class="button" id="btn_close" value="閉じる" onclick="window.close()">
+            </form>
+        </main>
+
+        <script type="text/javascript" src="/eel.js"></script>
+        <script>
+          //ファイル名のテキストボックスに最初からフォーカス
+          filename.focus();
+
+          //テキストボックス入力チェック関数
+          //ファイル名と検索キーワードの両方が入力されたら
+          //検索ボタンを有効にする
+          function inputcheck(){
+            if ((filename.value.length >= 1) && (keyword.value.length >= 1)){
+              search.disabled = false;
+            }
+          }
+
+          //テキストボックスにイベント設定
+          //ファイル名が入力されたら警告消える
+          filename.addEventListener('keyup',function(){
+            if (filename.value.length >= 1) {
+              atentionf.style.visibility="hidden";
+              inputcheck();
+            } else {
+              atentionf.style.visibility="visible";
+            }
+          },false);
+
+          //検索キーワードが入力されたら警告消える
+          keyword.addEventListener('keyup',function(){
+            if (keyword.value.length >= 1) {
+              atentionw.style.visibility = "hidden";
+              inputcheck();
+            } else {
+              atentionw.style.visibility = "visible";
+            }
+          },false);
+
+          //結果をテキストエリアに表示
+          eel.expose(show_result)
+          function show_result(kekka){
+            result.value += kekka + "\n" ;
+          }
+
+          //リストに追加するか確認ダイアログ表示
+          eel.expose(ask_add_list) 
+          function ask_add_list(){
+            var add_yesno = window.confirm(`『${keyword.value}』はありません。\nリストに追加してもよろしいですか？`);
+            return add_yesno;
+          }
+
+          //ファイルに保存するか確認ダイアログ表示
+          eel.expose(ask_save)
+          function ask_save(){
+            var save_yesno = window.confirm("リストをファイルに保存します。\nよろしいですか？");
+            return save_yesno;
+          }
+
+          //保存場所をきくダイアログ表示
+          eel.expose(ask_save_path)
+          function ask_save_path(){
+            var save_path = window.prompt("保存場所のパスを入力してください。",".");
+            if((save_path == "") || (save_path == null)){
+              window.alert("リストをファイルに保存せずに終了します。");
+            }else{
+              return save_path;
+            }
+          }
+
+          //検索ボタンクリック　で　実行
+          function search_btn_click(){
+              eel.kimetsu_search(filename.value+".csv", keyword.value)();
+          }
+              /*search.addEventListener('click', () => {
+            })*/
+
+            eel.expose(view_log_js)
+            function view_log_js(text){
+            }
+
+          </script>
+    </body>
+</html>

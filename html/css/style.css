@@ -1,0 +1,106 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  width: 650px;
+  height: 550px;
+  background-color: #eee;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+li {
+  list-style: none;
+}
+
+main {
+  width: 600px;
+  height: 500px;
+  margin: 20px auto;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 30px;
+}
+
+main h2 {
+  line-height: 2em;
+  text-align: center;
+  color: #fff;
+  background-color: #06c;
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+
+main .searchform {
+  width: 600px;
+  margin: 0 auto;
+}
+
+main .searchform label {
+  display: inline-block;
+  width: 170px;
+  line-height: 2em;
+  text-align: end;
+}
+
+main .searchform input, main .searchform textarea {
+  border: blue 1px solid;
+  outline: darkblue 1px;
+  line-height: 2em;
+  width: 180px;
+}
+
+main .searchform #filename {
+  text-align: right;
+}
+
+main .searchform .button {
+  width: 60px;
+  margin-left: 10px;
+  text-align: center;
+  background-color: #fff;
+  padding: 0px 10px;
+  line-height: 2em;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+main .searchform #btn_close {
+  margin-left: 400px;
+}
+
+main .searchform .button:hover {
+  box-shadow: #05f 2px 2px 5px;
+}
+
+main .searchform .button:active {
+  box-shadow: none;
+  transform: translate(5px 5px);
+}
+
+main .searchform .atention {
+  margin-bottom: 10px;
+  line-height: 1.5em;
+  color: red;
+  padding-left: 180px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+main .searchform #result {
+  vertical-align: top;
+  width: 300px;
+  margin: 5px auto 10px;
+  padding: 1em;
+  font-size: 1em;
+}
+/*# sourceMappingURL=style.css.map */
